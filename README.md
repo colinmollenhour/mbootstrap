@@ -1,8 +1,6 @@
-<a href="http://www.ecomdev.org/services/magento-development?utm_source=github&utm_medium=logo&utm_campaign=github">![EcomDev](http://www.ecomdev.org/wp-content/themes/ecomdev/images/logo.png)</a>
+# Magento-Bootstrap theme for Mage_Lite
 
-# Magento-Bootstrap theme
-
-Magento-Bootstrap theme it is package fully based on Twitter Bootstrap framework.
+This project is a fork of [Magento-Bootstrap theme](https://github.com/EcomDev/mbootstrap) modified specifically for use with Mage_Lite. It is a theme package fully based on Twitter Bootstrap framework.
 
 ## Status:
 
@@ -17,12 +15,16 @@ Current version: Alpha
 
 ## How to install
 
-1. `modman clone git@github.com:EcomDev/mbootstrap.git mboostrap`
+1. `modman clone git@github.com:colinmollenhour/mbootstrap-lite.git mboostrap`
 2. Open Admin Panel
     * go to **System -> Configuration**
     * open **Design** tab on left sidebar
     * open **Package** section
     * write "bootstrap" in *Current Package Name* field
+    * press "Save Config" button
+    * open **Developer** tab on left sidebar
+    * open **Template Settings** section
+    * change **Allow Symlinks** to **Yes**
     * press "Save Config" button
 3. Refresh front-end page and enjoy
 
@@ -69,7 +71,7 @@ So you need create new theme in **bootstrap** package
 ```
 
 That's it!
-Now you can develope your custom theme based on Magento-Bootstrap theme
+Now you can develop your custom theme based on Magento-Bootstrap theme
 
 (i) don`t forget enter your just created theme name (in example it is *custom-theme*) 
 at Admin Panel (System -> Configuration -> General -> Design tab -> Themes section -> Default field)
@@ -106,3 +108,8 @@ For more information go *magento/skin/frontend/bootstrap/default/* folder and re
 2. Bootstrap framework install          -- Open *magento/skin/frontend/default/bootstrap* and run `$ npm install` command in terminal
 
 
+## Special Thanks
+
+Special thanks to the guys at EcomDev for your work on Magento-Bootstrap theme.
+
+<a href="http://www.ecomdev.org/services/magento-development?utm_source=github&utm_medium=logo&utm_campaign=github">![EcomDev](http://www.ecomdev.org/wp-content/themes/ecomdev/images/logo.png)</a>
