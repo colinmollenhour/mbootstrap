@@ -35,7 +35,24 @@
 
             <!-- Add project CSS file -->
             <reference name="head">
+                <action method="setIsHead"><bool>1</bool></action>
+
                 <!-- Remove default files -->
+                <action method="removeItem"><type>js</type><script>prototype/prototype.js</script></action>
+                <action method="removeItem"><type>js</type><script>lib/ccard.js</script></action>
+                <action method="removeItem"><type>js</type><script>prototype/validation.js</script></action>
+                <action method="removeItem"><type>js</type><script>scriptaculous/builder.js</script></action>
+                <action method="removeItem"><type>js</type><script>scriptaculous/effects.js</script></action>
+                <action method="removeItem"><type>js</type><script>scriptaculous/dragdrop.js</script></action>
+                <action method="removeItem"><type>js</type><script>scriptaculous/controls.js</script></action>
+                <action method="removeItem"><type>js</type><script>scriptaculous/slider.js</script></action>
+                <action method="removeItem"><type>js</type><script>varien/js.js</script></action>
+                <action method="removeItem"><type>js</type><script>varien/form.js</script></action>
+                <action method="removeItem"><type>js</type><script>varien/menu.js</script></action>
+                <action method="removeItem"><type>js</type><script>mage/translate.js</script></action>
+                <action method="removeItem"><type>js</type><script>mage/cookies.js</script></action>
+                <action method="removeItem"><type>js</type><name>lib/ds-sleight.js</name></action>
+                <action method="removeItem"><type>skin_js</type><name>js/ie6.js</name></action>
                 <action method="removeItem"><type>skin_css</type><name>css/styles-ie.css</name></action>
                 <action method="removeItem"><type>skin_css</type><name>css/styles.css</name></action>
                 <action method="removeItem"><type>skin_css</type><name>css/widgets.css</name></action>
@@ -43,8 +60,8 @@
 
 
                 <!-- Bootstrap framework styles -->
-                <action method="addItem"><type>skin_css</type><name>bootstrap/bootstrap/css/bootstrap.min.css</name><params>media="screen"</params></action>
-                <action method="addItem"><type>skin_css</type><name>bootstrap/bootstrap/css/bootstrap-responsive.min.css</name><params>media="screen"</params></action>
+                <action method="addItem"><type>skin_css</type><name>bootstrap/bootstrap/css/bootstrap.css</name><params>media="screen"</params></action>
+                <action method="addItem"><type>skin_css</type><name>bootstrap/bootstrap/css/bootstrap-responsive.css</name><params>media="screen"</params></action>
 
 
                 <!-- General styles -->
@@ -85,6 +102,7 @@
             </reference>
 
             <!-- Default Magento blocks -->
+            <remove name="js_cookies" />
             <remove name="left.permanent.callout" /> <!--the dog-->
             <remove name="right.permanent.callout" /> <!--back to school-->
             <remove name="top.links"/>
@@ -92,26 +110,7 @@
             <reference name="header">
 
                 <block type="page/template_links" name="top.links_custom" as="topLinks_custom" template="page/html/top.links.phtml">
-                    <action method="addLink" translate="label title" module="customer">
-                        <label>My Account</label><url helper="customer/getAccountUrl"/><title>My Account</title>
-                        <prepare/><urlParams/><position>100</position><liParams/>
-                        <aParams/><beforeText><![CDATA[<i class="icon-user"></i>]]></beforeText>
-                    </action>
-                    <action method="addLink" translate="label title" module="wishlist">
-                        <label>My Wishlist</label><url helper="wishlist/getListUrl"/><title>My Wishlist</title>
-                        <prepare/><urlParams/><position>200</position><liParams>hidden-phone</liParams>
-                        <aParams/><beforeText><![CDATA[<i class="icon-star"></i>]]></beforeText>
-                    </action>
-                    <action method="addLink" translate="label title" module="wishlist">
-                        <label>My Cart</label><url helper="checkout/url/getCartUrl"/><title>My Cart</title>
-                        <prepare/><urlParams/><position>300</position><liParams/>
-                        <aParams/><beforeText><![CDATA[<i class="icon-shopping-cart"></i>]]></beforeText>
-                    </action>
-                    <action method="addLink" translate="label title" module="wishlist">
-                        <label>Checkout</label><url helper="checkout/url/getCheckoutUrl"/><title>Checkout</title>
-                        <prepare/><urlParams/><position>400</position><liParams>hidden-phone</liParams>
-                        <aParams/><beforeText><![CDATA[<i class="icon-ok"></i>]]></beforeText>
-                    </action>
+
                 </block>
 
             </reference>
@@ -125,11 +124,17 @@
             </reference>
 
             <block type="page/html_head" name="before_body_end" as="before_body_end">
+                <action method="setUseTranslator"><bool>1</bool></action>
+
                 <!-- jQuery framework -->
-                <action method="addItem"><type>skin_js</type><script>js/jquery/jquery-1.9.1.min.js</script></action>
+                <action method="addJs"><script>bootstrap/prototype-lite.js</script></action>
+                <action method="addJs"><script>mage/translate.js</script></action>
+                <action method="addJs"><script>mage/cookies.js</script></action>
+                <action method="addJs"><script>bootstrap/jquery-1.9.1.js</script></action>
 
                 <!-- Bootstrap framework scripts -->
-                <action method="addItem"><type>skin_js</type><script>bootstrap/bootstrap/js/bootstrap.min.js</script></action>
+                <action method="addItem"><type>skin_js</type><script>bootstrap/bootstrap/js/bootstrap.js</script></action>
+                <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
             </block>
 
         </reference>
@@ -184,106 +189,6 @@
     -->
 
     <cms_index_index translate="label"></cms_index_index>
-
-    <!--
-    Category default layout
-    -->
-
-    <catalog_category_default translate="label">
-        <reference name="root">
-            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
-
-            <reference name="left">
-                <action method="insert"><name>cart_sidebar</name><siblingName>catalog.leftnav</siblingName><after>1</after></action>
-            </reference>
-
-        </reference>
-    </catalog_category_default>
-
-    <!--
-    Category layered navigation layout
-    -->
-
-    <catalog_category_layered translate="label">
-        <reference name="root">
-            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
-
-            <reference name="left">
-                <action method="insert"><name>cart_sidebar</name><siblingName>catalog.leftnav</siblingName><after>1</after></action>
-            </reference>
-
-        </reference>
-    </catalog_category_layered>
-
-    <!--
-    Search result page
-    -->
-
-    <catalogsearch_result_index translate="label">
-        <reference name="root">
-            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
-
-            <reference name="left">
-                <action method="insert"><name>cart_sidebar</name><siblingName>catalog.leftnav</siblingName><after>1</after></action>
-            </reference>
-
-        </reference>
-    </catalogsearch_result_index>
-
-    <!--
-    Product view
-    -->
-
-    <catalog_product_view translate="label">
-        <reference name="root">
-            <remove name="left"/>
-            <remove name="right"/>
-            <action method="setTemplate"><template>page/1column.phtml</template></action>
-        </reference>
-    </catalog_product_view>
-
-    <!--
-    Cart page
-    -->
-
-    <checkout_cart_index translate="label">
-        <reference name="root">
-            <remove name="left"/>
-            <remove name="right"/>
-            <action method="setTemplate"><template>page/1column.phtml</template></action>
-        </reference>
-    </checkout_cart_index>
-
-    <!--
-    One page checkout main layout
-    -->
-
-    <checkout_onepage_index translate="label">
-        <reference name="head">
-            <!-- Checkout styles -->
-            <action method="addItem"><type>skin_css</type><name>css/checkout.css</name><params/></action>
-        </reference>
-    </checkout_onepage_index>
-
-    <!--
-    One page checkout progress block
-    -->
-
-    <checkout_onepage_success translate="label">
-        <!-- Add project JS/CSS file -->
-        <reference name="head">
-            <!-- Checkout styles -->
-            <action method="addItem"><type>skin_css</type><name>css/checkout.css</name><params/></action>
-        </reference>
-    </checkout_onepage_success>
-
-    <checkout_onepage_failure translate="label">
-        <!-- Add project JS/CSS file -->
-        <reference name="head">
-            <!-- Checkout styles -->
-            <action method="addItem"><type>skin_css</type><name>css/checkout.css</name><params/></action>
-        </reference>
-    </checkout_onepage_failure>
 
     <!--
     Customer account pages, rendered for all tabs in dashboard
@@ -377,11 +282,5 @@
     -->
 
     <cms_page translate="label"></cms_page>
-
-    <!--
-    One page checkout main layout
-    -->
-
-    <checkout_onepage_index translate="label"></checkout_onepage_index>
 
 </layoutUpdate>

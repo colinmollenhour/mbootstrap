@@ -17,3 +17,4 @@ skin/frontend/bootstrap/default/css							skin/frontend/bootstrap/default/css
 skin/frontend/bootstrap/default/less							skin/frontend/bootstrap/default/less
 skin/frontend/bootstrap/default/Makefile						skin/frontend/bootstrap/default/Makefile
 skin/frontend/bootstrap/default/watcher.js						skin/frontend/bootstrap/default/watcher.js
+js/bootstrap                                          js/bootstrap

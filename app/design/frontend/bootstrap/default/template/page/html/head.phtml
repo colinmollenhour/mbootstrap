@@ -24,6 +24,7 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
+<?php if ($this->getIsHead()): ?>
 <meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
 <title><?php echo $this->getTitle() ?></title>
 <meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
@@ -40,7 +41,21 @@
 //]]>
 </script>
 <![endif]-->
+<?php endif ?>
 <?php echo $this->getCssJsHtml() ?>
 <?php echo $this->getChildHtml() ?>
+<?php if ($this->getUseTranslator()) : ?>
 <?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<?php endif ?>
 <?php echo $this->getIncludes() ?>
+<script type="text/javascript">
+//<![CDATA[
+<?php if ($this->getIsHead()): ?>
+var domLoadedCallbacks = []
+// Example: domLoadedCallbacks.push(function(){ alert('hello world!'); })
+<?php else: ?>
+domLoadedCallbacks = jQuery.Callbacks().add(domLoadedCallbacks)
+jQuery(function(){ domLoadedCallbacks.fire() })
+<?php endif ?>
+//]]>
+</script>
